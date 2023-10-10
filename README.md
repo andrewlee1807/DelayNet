@@ -2,7 +2,11 @@
 
 This is the origin Tensorflow implementation of Informer in the following paper: [paper-link]
 
-![img.png](imgs/model1.png) ![model2.png](imgs%2Fmodel2.png)
+<p float="left">
+  <img src="imgs/model1.png" />
+  <img src="imgs/model2.png"  />
+</p>
+
 # Initialized environment (Linux OS)
 
 ```shell
@@ -18,26 +22,32 @@ echo 'CUDNN_PATH=$(dirname $(python -c "import nvidia.cudnn;print(nvidia.cudnn._
 echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/:$CUDNN_PATH/lib' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 
 ```
+
 # Requirements
+
 Dependencies can be installed using the following command:
+
 ```shell
 pip install -r requirements.txt
 `````
 
+### Notice:
 
-### Notice: 
 We are using TensorFlowV2.11 in order to use Keras-TCN library. So, there are some expected issues installation.
 
 # Data
+
 [Introduction data]
 
 # Reproducibility
+
 - Each `execute_*.sh` file is corresponding to each model
-  - Example: `execute_model1_cnu.sh` is corresponding to `model1` experiment on CNU dataset 
-    ```shell
-    sh execute_model1_cnu.sh 
-    ```
+    - Example: `execute_model1_cnu.sh` is corresponding to `model1` experiment on CNU dataset
+      ```shell
+      sh execute_model1_cnu.sh 
+      ```
 - Set Linux Commands to Run in the Background Using disown:
+
 ```shell
 tmux new -d 'sh execute_model1_spain.sh > output.log'
 ```
@@ -59,10 +69,9 @@ python main.py \
 
 We provide a more detailed and complete command description for training and testing the model:
 
-
 ```yaml
 #INITIAL SETTINGS
-kernel_size: 12 
+kernel_size: 12
 gap: 24       # distance kernal mask
 delay_factor: 3 # how many kernal mask refer to the past
 nb_filters: 16  # Number of filters 
@@ -79,6 +88,5 @@ More parameter information please refer to `main.py`.
 # Results
 
 [Adding tables]
-
 
 # Citation
