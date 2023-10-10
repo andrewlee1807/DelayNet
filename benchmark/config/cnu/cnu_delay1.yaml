@@ -1,0 +1,14 @@
+#INITIAL SETTINGS
+kernel_size: 12 # Sẽ là số chẳn vì kernal size này sẽ chia làm 2 phần
+gap: 24       # Khoảng cách giữa 2 kết nối trong một kernal mask
+delay_factor: 3 # Bao nhiêu kết nối trong một kernal mask về quá khứ
+nb_filters: 16  # Số lượng filter trong mỗi kernal mask
+nb_stacks: 2 # Số lượng Block trong mô hình, minimum=1
+input_width: 168
+output_length: 1 # predict 1 hour
+train_ratio: 0.9
+epochs: 10
+features: [ "PowerConsumption"]  # Features to use for training
+prediction_feature: "PowerConsumption"  # Feature to use for prediction
+optimizer: "adam"
+metrics: [ 'mse', 'mae' ]
