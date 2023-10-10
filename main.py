@@ -16,9 +16,17 @@ def main():
     config = warming_up(args)
 
     # Load dataset
-    dataset = Dataset(dataset_name=config["dataset_name"])
+    if config["dataset_name"] == "None":
+        if config[""]:
+            import pandas as pd
+            data = pd.read_csv(config["dataset_path"]).to_numpy()
+        else:
+            print("Please enter the dataset path as csv file")
+            exit(0)
+    else:
+        dataset = Dataset(dataset_name=config["dataset_name"])
 
-    data = dataset.dataloader.export_the_sequence(config["features"])
+        data = dataset.dataloader.export_the_sequence(config["features"])
 
     print("Building time series generator...")
     tsf = TimeSeriesGenerator(data=data,

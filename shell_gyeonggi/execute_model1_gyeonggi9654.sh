@@ -14,7 +14,7 @@ for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 36 48 60
     --config_path="benchmark/config/gy/gyeonggi_9654_delay1.yaml" \
     --output_length=$i \
     --device=0 \
-    --output_dir="benchmark/exp/gy/delay1_test"
+    --output_dir="benchmark/exp/gy/delay1"
    echo "Finished training model with output length = $i"
    echo "=================================================="
 done
