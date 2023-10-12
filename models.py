@@ -4,10 +4,6 @@ from tensorflow.keras.losses import Huber
 
 from delayedtcn.models import *
 
-# List model name
-model1_str = "Model1"
-
-
 
 def build_callbacks(tensorboard_log_dir='logs', tensorboard_name=None):
     """Control and tracking learning process during training phase"""
@@ -59,19 +55,6 @@ def initialize_model1(config):
     return compile_model(model, config)
 
 
-
-# def initialize_tcn_model(config):
-#     from tcnbased.tcn_family import TCN_Vanilla
-#     model = TCN_Vanilla(input_width=config['input_width'],
-#                         dilations=config['list_dilation'],
-#                         nb_filters=config['nb_filters'],
-#                         kernel_size=config['kernel_size'],
-#                         num_features=len(config['features']),
-#                         target_size=config['output_length'])
-#
-#     return compile_model(model, config)
-
-
 def initialize_baseline_model(config, model_class):
     baseline_model = model_class(input_width=config['input_width'],
                                  num_hidden_layer=config['num_hidden_layer'],
@@ -84,10 +67,8 @@ def initialize_baseline_model(config, model_class):
     return baseline_model.model
 
 
-def get_model(model_name: str, config) -> object:
-    model_name = model_name.upper()
-    if model_name == model1_str.upper():
-        return initialize_model1(config)
+def get_model(config) -> object:
+    return initialize_model1(config)
     # elif model_name == model2_str.upper():
     #     return initialize_model2(config)
     # elif model_name == model3_str.upper():
@@ -100,5 +81,3 @@ def get_model(model_name: str, config) -> object:
     #     return initialize_baseline_model(config, GRUModel)
     # elif model_name == mlp_model_str.upper():
     #     return initialize_baseline_model(config, MLPModel)
-
-    return None

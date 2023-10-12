@@ -17,9 +17,14 @@ def main():
 
     # Load dataset
     if config["dataset_name"] == "None":
-        if config[""]:
+        if args.dataset_path is not None and args.dataset_path.split(".")[-1] in ["csv", "CSV"]:
+            if args.features is None or args.prediction_feature is None:
+                print("Please enter the features to use for training")
+                exit(0)
             import pandas as pd
-            data = pd.read_csv(config["dataset_path"]).to_numpy()
+            df = pd.read_csv(args.dataset_path, sep='\t')
+            data = df[args.features.split(',')].to_numpy() # (Sequence, Number of features)
+            config["prediction_feature"] = args.prediction_feature
         else:
             print("Please enter the dataset path as csv file")
             exit(0)
@@ -34,20 +39,15 @@ def main():
                               normalize_type=1,
                               shuffle=False)
 
-    if "MODEL" in args.model_name.upper():  # delayNet model
-        tsf.re_arrange_sequence(config)
-        data_train = [[tsf.data_train[0], tsf.data_train_gen[0]], tsf.data_train[1]]
-        data_valid = [[tsf.data_valid[0], tsf.data_valid_gen[0]], tsf.data_valid[1]]
-        data_test = [[tsf.data_test[0], tsf.data_test_gen[0]], tsf.data_test[1]]
-    else:
-        data_train = [tsf.data_train[0], tsf.data_train[1]]
-        data_valid = [tsf.data_valid[0], tsf.data_valid[1]]
-        data_test = [tsf.data_test[0], tsf.data_test[1]]
+    # if "MODEL" in args.model_name.upper():  # delayNet model
+    tsf.re_arrange_sequence(config)
+    data_train = [[tsf.data_train[0], tsf.data_train_gen[0]], tsf.data_train[1]]
+    data_valid = [[tsf.data_valid[0], tsf.data_valid_gen[0]], tsf.data_valid[1]]
+    data_test = [[tsf.data_test[0], tsf.data_test_gen[0]], tsf.data_test[1]]
 
     print("Building model...")
     # Get model (built and summary)
-    model = get_model(model_name=args.model_name,
-                      config=config)
+    model = get_model(config=config)
 
     # callbacks
     callbacks = build_callbacks(tensorboard_log_dir=config["tensorboard_log_dir"])

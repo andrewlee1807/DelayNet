@@ -107,6 +107,7 @@ class StrideLayer(layers.Layer):
                  padding='causal',
                  dropout_rate=0.0,
                  use_weight_norm=False,
+                 init=tf.keras.initializers.RandomNormal(mean=0.0, stddev=0.01),
                  name="DilatedLayer", **kwargs):
         super(StrideLayer, self).__init__(name=name, **kwargs)
 

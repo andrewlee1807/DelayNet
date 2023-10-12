@@ -5,13 +5,18 @@ from utils.directory import create_file
 import sys
 import yaml
 import os
+
+
 # Get all arguments from command
 def arg_parse(parser):
-    parser.add_argument('--dataset_name', type=str, default='None', help='Dataset Name: household; cnu; spain; gyeonggi')
-    parser.add_argument('--model_name', type=str, default='model1', help='Model Name: model1; model2; model3')
-    parser.add_argument('--dataset_path', type=str, default='../dataset/', help='Dataset path')
-    parser.add_argument('--config_path', type=str, help='Configuration file path')
+    parser.add_argument('--dataset_name', type=str, default='None',
+                        help='Dataset Name: household; cnu; spain; gyeonggi')
+    parser.add_argument('--dataset_path', type=str, default='None', help='Dataset path')
+    parser.add_argument('--config_path', type=str, default='benchmark/config/config.yaml',
+                        help='Configuration file path')
     parser.add_argument('--output_length', type=int, default=1, help='Prediction Length')
+    parser.add_argument('--features', type=str, help='Features to use for training; Example feature1, feature2, ...')
+    parser.add_argument('--prediction_feature', type=str, help='Features to use for prediction')
     parser.add_argument('--device', type=int, default=0, help='CUDA Device')
     parser.add_argument('--output_dir', type=str, default='results', help='Output directory')
     parser.add_argument('--write_log_file', type=bool, default=False,
