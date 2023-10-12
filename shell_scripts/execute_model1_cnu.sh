@@ -8,7 +8,6 @@ for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 36 48 60
    python main.py \
     --dataset_name="CNU" \
     --write_log_file=True \
-    --model_name="Model1" \
     --config_path="benchmark/config/cnu/cnu_delay1.yaml" \
     --output_length=$i \
     --device=0 \
