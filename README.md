@@ -1,6 +1,6 @@
 # DelayNet: Enhancing temporal feature extraction for electronic consumption forecasting with delayed dilated convolution
 
-This is the origin Tensorflow implementation of DelayNet in the following paper: [paper-link]
+This is the origin Tensorflow implementation of DelayNet in the following paper: https://www.mdpi.com/1996-1073/16/22/7662
 
 <table border="0">
  <tr>
